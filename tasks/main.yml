@@ -1,0 +1,25 @@
+---
+- name: Install packages
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ nginx_packages }}"
+  notify: enable nginx
+
+- name: Create vhost config directories
+  file:
+    path: "/etc/nginx/{{ item }}"
+    state: directory
+  with_items:
+    - sites-available
+    - sites-enabled
+
+- name: Install configuration
+  copy:
+    src: "{{ item }}"
+    dest: "/etc/nginx/{{ item }}"
+  with_items:
+    - nginx.conf
+    - mime.types
+    - fastcgi_params
+  notify: restart nginx
