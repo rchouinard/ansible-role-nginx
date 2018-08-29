@@ -1,5 +1,6 @@
 ---
 - name: Install packages
+  become: yes
   package:
     name: "{{ item }}"
     state: present
@@ -7,6 +8,7 @@
   notify: enable nginx
 
 - name: Create vhost config directories
+  become: yes
   file:
     path: "/etc/nginx/{{ item }}"
     state: directory
@@ -15,6 +17,7 @@
     - sites-enabled
 
 - name: Install configuration
+  become: yes
   copy:
     src: "{{ item }}"
     dest: "/etc/nginx/{{ item }}"
