@@ -1,20 +1,22 @@
 ---
 - name: Install packages
   become: yes
-  package:
-    name: "{{ item }}"
+  dnf:
+    name: "{{ nginx_packages }}"
     state: present
-  with_items: "{{ nginx_packages }}"
-  notify: enable nginx
 
-- name: Create vhost config directories
+- name: Enable service
+  become: yes
+  service:
+    name: nginx
+    enabled: yes
+    state: started
+
+- name: Create vhost config directory
   become: yes
   file:
-    path: "/etc/nginx/{{ item }}"
+    path: "/etc/nginx/sites.d"
     state: directory
-  with_items:
-    - sites-available
-    - sites-enabled
 
 - name: Install configuration
   become: yes
