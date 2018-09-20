@@ -28,3 +28,17 @@
     - mime.types
     - fastcgi_params
   notify: restart nginx
+
+- name: Configure upstreams
+  become: yes
+  template:
+    src: upstream.conf.j2
+    dest: "/etc/nginx/conf.d/{{ upstream.name }}.conf"
+    owner: root
+    group: root
+    mode: 0644
+  loop: "{{ nginx_upstreams }}"
+  loop_control:
+    loop_var: upstream
+    label: "{{ upstream.name }}"
+  when: nginx_upstreams is not empty
