@@ -6,11 +6,11 @@
     state: present
 
 - name: Enable service
-  bacome: yes
+  become: yes
   service:
     name: nginx
     enabled: yes
-    state: running
+    state: started
 
 - name: Create vhost config directory
   become: yes

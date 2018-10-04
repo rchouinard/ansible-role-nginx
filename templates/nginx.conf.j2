@@ -1,7 +1,7 @@
-user {{ nginx_user }}{% if nginx_group %} {{ nginx_group }}{% endif %};
+user {{ nginx_user | default('nginx') }}{% if nginx_group is defined %} {{ nginx_group }}{% endif %};
 
 worker_processes {{ nginx_worker_processes | default('auto') }};
-worker_rlimit_nofile {{ nginx_worker_rlimit_nofile | default('8192') }}
+worker_rlimit_nofile {{ nginx_worker_rlimit_nofile | default('8192') }};
 
 error_log /var/log/nginx/error.log warn;
 pid /var/run/nginx.pid;
@@ -44,7 +44,7 @@ http {
 
   client_max_body_size        {{ nginx_http_client_max_body_size | default('20m') }};
   client_body_buffer_size     {{ nginx_http_client_body_buffer_size | default('4k') }};
-  client_header_buffer_size   {{ nginx_http_client_header_buffer_size | deafult('4k') }};
+  client_header_buffer_size   {{ nginx_http_client_header_buffer_size | default('4k') }};
   large_client_header_buffers {{ nginx_http_large_client_header_buffers | default('16 4k') }};
 
   fastcgi_buffering {{ nginx_http_fastcgi_buffering | default('on') }};
