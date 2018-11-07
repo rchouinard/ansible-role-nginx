@@ -1,3 +1,5 @@
+# {{ ansible_managed }}
+
 user {{ nginx_user | default('nginx') }}{% if nginx_group is defined %} {{ nginx_group }}{% endif %};
 
 worker_processes {{ nginx_worker_processes | default('auto') }};
