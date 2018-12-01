@@ -1,19 +1,16 @@
 ---
 - name: Install packages
-  become: yes
   package:
     name: "{{ nginx_packages }}"
     state: present
 
 - name: Enable service
-  become: yes
   service:
     name: nginx
     enabled: yes
     state: started
 
 - name: Create vhost config directory
-  become: yes
   file:
     path: "/etc/nginx/sites.d"
     mode: 0755
@@ -23,7 +20,6 @@
     state: directory
 
 - name: Install main configuration
-  become: yes
   template:
     src: nginx.conf.j2
     dest: /etc/nginx/nginx.conf
@@ -34,7 +30,6 @@
   notify: restart nginx
 
 - name: Install additional configuration
-  become: yes
   copy:
     src: "{{ item }}"
     dest: "/etc/nginx/{{ item }}"
@@ -48,7 +43,6 @@
   notify: restart nginx
 
 - name: Configure upstreams
-  become: yes
   template:
     src: upstream.conf.j2
     dest: "/etc/nginx/conf.d/{{ upstream.name }}.conf"
