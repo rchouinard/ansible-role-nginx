@@ -1,4 +1,4 @@
-# {{ ansible_managed }}
+{{ ansible_managed | comment }}
 
 upstream {{ upstream.name }} {
 {% for server in upstream.servers %}

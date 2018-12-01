@@ -1,4 +1,4 @@
-# {{ ansible_managed }}
+{{ ansible_managed | comment }}
 
 user {{ nginx_user | default('nginx') }}{% if nginx_group is defined %} {{ nginx_group }}{% endif %};
 
