@@ -1,6 +1,6 @@
 ---
 galaxy_info:
-  author: Ryan Chouinard
+  author: rchouinard
   description: NGINX for Fedora
   role_name: nginx
   license: MIT
