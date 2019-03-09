@@ -31,15 +31,12 @@
 
 - name: Install additional configuration
   copy:
-    src: "{{ item }}"
-    dest: "/etc/nginx/{{ item }}"
+    src: mime.types
+    dest: /etc/nginx/mime.types
     mode: 0644
     seuser: system_u
     serole: object_r
     setype: httpd_config_t
-  loop:
-    - mime.types
-    - fastcgi_params
   notify: restart nginx
 
 - name: Configure upstreams
