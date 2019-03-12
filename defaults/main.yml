@@ -2,12 +2,6 @@
 nginx_packages:
   - nginx
 
-nginx_upstreams: []
-#  - name: php-fpm
-#    servers:
-#      - 'unix:/var/run/php-fpm/www.sock'
-#    extra: ~
-
 nginx_user: nginx
 nginx_group: ~
 nginx_worker_processes: auto
