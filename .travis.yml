@@ -5,5 +5,10 @@ services: docker
 install:
   - pip install molecule docker
 
+before_script:
+  - cd ../
+  - mv ansible-role-nginx rchouinard.nginx
+  - cd rchouinard.nginx/
+
 script:
   - molecule test
