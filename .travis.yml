@@ -1,10 +1,11 @@
 ---
 language: python
+cache: pip
 services:
   - docker
 
 install:
-  - pip install molecule['docker'] docker-py
+  - pip install molecule['docker']
 
 before_script:
   - cd ../
