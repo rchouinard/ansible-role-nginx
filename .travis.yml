@@ -1,9 +1,10 @@
 ---
 language: python
-services: docker
+services:
+  - docker
 
 install:
-  - pip install molecule docker
+  - pip install molecule['docker'] docker-py
 
 before_script:
   - cd ../
