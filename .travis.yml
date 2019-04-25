@@ -13,4 +13,4 @@ before_script:
   - cd rchouinard.nginx/
 
 script:
-  - molecule --debug test
+  - molecule test
