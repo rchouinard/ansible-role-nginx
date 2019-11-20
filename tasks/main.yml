@@ -10,9 +10,9 @@
     enabled: yes
     state: started
 
-- name: Create vhost config directory
+- name: Create server config directory
   file:
-    path: /etc/nginx/sites.d
+    path: /etc/nginx/server.d
     mode: 0755
     seuser: system_u
     serole: object_r
@@ -29,12 +29,15 @@
     setype: httpd_config_t
   notify: restart nginx
 
-- name: Install additional configuration
+- name: Install H5BP configuration
   copy:
-    src: mime.types
-    dest: /etc/nginx/mime.types
+    src: "{{ item }}"
+    dest: /etc/nginx/
     mode: 0644
     seuser: system_u
     serole: object_r
     setype: httpd_config_t
+  loop:
+    - h5bp
+    - mime.types
   notify: restart nginx
