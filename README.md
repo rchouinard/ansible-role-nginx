@@ -2,7 +2,7 @@
 
 This role provides the NGINX web server with the opinionated H5BP server configuration.
 
-Configuration overrides should be placed in `/etc/nginx/conf.d/`, and server definitions shoulf be placed in `/etc/nginx/server.d/`.
+Configuration overrides should be placed in `/etc/nginx/conf.d/`, and server definitions should be placed in `/etc/nginx/server.d/`.
 
 ## Requirements
 
