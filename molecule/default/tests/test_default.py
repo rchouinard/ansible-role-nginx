@@ -12,8 +12,14 @@ def test_package_installed(host):
     assert pkg.is_installed
 
 
-def test_service_running(host):
-    srvc = host.service("nginx.service")
+def test_config_valid(host):
+    cmd = host.run("nginx -t")
 
-    assert srvc.is_enabled
-    assert srvc.is_running
+    assert cmd.rc == 0
+
+
+def test_service_running(host):
+    svc = host.service("nginx.service")
+
+    assert svc.is_enabled
+    assert svc.is_running

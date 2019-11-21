@@ -6,7 +6,55 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: instance
+  - name: fedora-rawhide
+    image: fedora:rawhide
+    command: /sbin/init
+    environment:
+      container: docker
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    tmpfs:
+      - /tmp
+      - /run
+    capabilities:
+      - SYS_ADMIN
+  - name: fedora-31
+    image: fedora:31
+    command: /sbin/init
+    environment:
+      container: docker
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    tmpfs:
+      - /tmp
+      - /run
+    capabilities:
+      - SYS_ADMIN
+  #  - name: fedora-30
+  #    image: fedora:30
+  #    command: /sbin/init
+  #    environment:
+  #      container: docker
+  #    volumes:
+  #      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+  #    tmpfs:
+  #      - /tmp
+  #      - /run
+  #    capabilities:
+  #      - SYS_ADMIN
+  - name: fedora-29
+    image: fedora:29
+    command: /sbin/init
+    environment:
+      container: docker
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    tmpfs:
+      - /tmp
+      - /run
+    capabilities:
+      - SYS_ADMIN
+  - name: fedora-28
     image: fedora:28
     command: /sbin/init
     environment:
