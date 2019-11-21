@@ -20,15 +20,15 @@ http {
   include h5bp/media_types/character_encodings.conf;
 
   # NCSA combined
-  log_format  combined  '$remote_addr - $remote_user [$time_local] "$request" '
-                        '$status $body_bytes_sent "$http_referer" '
-                        '"$http_user_agent" "$http_x_forwarded_for"';
+  log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                    '$status $body_bytes_sent "$http_referer" '
+                    '"$http_user_agent" "$http_x_forwarded_for"';
 
   # NCSA combined w/vhost
-  log_format  vcombined '$server_name:$server_port '
-                        '$remote_addr - $remote_user [$time_local] "$request" '
-                        '$status $body_bytes_sent "$http_referer" '
-                        '"$http_user_agent" "$http_x_forwarded_for"';
+  log_format  vmain '$server_name:$server_port '
+                    '$remote_addr - $remote_user [$time_local] "$request" '
+                    '$status $body_bytes_sent "$http_referer" '
+                    '"$http_user_agent" "$http_x_forwarded_for"';
 
   access_log  /var/log/nginx/access.log  combined;
 
