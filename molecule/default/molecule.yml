@@ -30,18 +30,18 @@ platforms:
       - /run
     capabilities:
       - SYS_ADMIN
-  #  - name: fedora-30
-  #    image: fedora:30
-  #    command: /sbin/init
-  #    environment:
-  #      container: docker
-  #    volumes:
-  #      - /sys/fs/cgroup:/sys/fs/cgroup:ro
-  #    tmpfs:
-  #      - /tmp
-  #      - /run
-  #    capabilities:
-  #      - SYS_ADMIN
+  - name: fedora-30
+    image: fedora:30
+    command: /sbin/init
+    environment:
+      container: docker
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    tmpfs:
+      - /tmp
+      - /run
+    capabilities:
+      - SYS_ADMIN
   - name: fedora-29
     image: fedora:29
     command: /sbin/init
