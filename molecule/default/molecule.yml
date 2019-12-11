@@ -54,8 +54,20 @@ platforms:
       - /run
     capabilities:
       - SYS_ADMIN
-  - name: fedora-28
-    image: fedora:28
+  - name: centos-8
+    image: centos:8
+    command: /sbin/init
+    environment:
+      container: docker
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    tmpfs:
+      - /tmp
+      - /run
+    capabilities:
+      - SYS_ADMIN
+  - name: centos-7
+    image: centos:7
     command: /sbin/init
     environment:
       container: docker

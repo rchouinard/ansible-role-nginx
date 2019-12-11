@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: rchouinard
-  description: NGINX for Fedora
+  description: NGINX for RedHat/Fedora Linux
   role_name: nginx
   license: MIT
   min_ansible_version: 2.4
@@ -11,6 +11,11 @@ galaxy_info:
         - 31
         - 30
         - 29
-        - 28
-  galaxy_tags: []
+    - name: EL
+      versions:
+        - 8
+        - 7
+  galaxy_tags:
+    - nginx
+    - h5bp
 dependencies: []
