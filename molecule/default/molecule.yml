@@ -1,88 +1,37 @@
 ---
+systemd_template: &systemd
+  command: /sbin/init
+  environment:
+    container: docker
+  tmpfs:
+    - /run
+    - /tmp
+  volumes:
+    - /sys/fs/cgroup:/sys/fs/cgroup:ro
+  capabilities:
+    - SYS_ADMIN
+
 dependency:
   name: galaxy
 driver:
   name: docker
-lint:
-  name: yamllint
 platforms:
   - name: fedora-rawhide
-    image: fedora:rawhide
-    command: /sbin/init
-    environment:
-      container: docker
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
-    tmpfs:
-      - /tmp
-      - /run
-    capabilities:
-      - SYS_ADMIN
+    image: docker.io/fedora:rawhide
+    <<: *systemd
   - name: fedora-31
-    image: fedora:31
-    command: /sbin/init
-    environment:
-      container: docker
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
-    tmpfs:
-      - /tmp
-      - /run
-    capabilities:
-      - SYS_ADMIN
+    image: docker.io/fedora:31
+    <<: *systemd
   - name: fedora-30
-    image: fedora:30
-    command: /sbin/init
-    environment:
-      container: docker
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
-    tmpfs:
-      - /tmp
-      - /run
-    capabilities:
-      - SYS_ADMIN
-  - name: fedora-29
-    image: fedora:29
-    command: /sbin/init
-    environment:
-      container: docker
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
-    tmpfs:
-      - /tmp
-      - /run
-    capabilities:
-      - SYS_ADMIN
+    image: docker.io/fedora:30
+    <<: *systemd
   - name: centos-8
-    image: centos:8
-    command: /sbin/init
-    environment:
-      container: docker
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
-    tmpfs:
-      - /tmp
-      - /run
-    capabilities:
-      - SYS_ADMIN
+    image: docker.io/centos:8
+    <<: *systemd
   - name: centos-7
-    image: centos:7
-    command: /sbin/init
-    environment:
-      container: docker
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
-    tmpfs:
-      - /tmp
-      - /run
-    capabilities:
-      - SYS_ADMIN
+    image: docker.io/centos:7
+    <<: *systemd
 provisioner:
   name: ansible
-  lint:
-    name: ansible-lint
 verifier:
-  name: testinfra
-  lint:
-    name: flake8
+  name: ansible

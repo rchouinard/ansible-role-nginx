@@ -9,8 +9,8 @@ install:
 
 before_script:
   - cd ../
-  - mv ansible-role-nginx rchouinard.nginx
-  - cd rchouinard.nginx/
+  - mv ansible-role-nginx nginx
+  - cd nginx/
 
 script:
   - molecule test
