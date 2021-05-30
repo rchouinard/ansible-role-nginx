@@ -4,4 +4,4 @@
   tasks:
 
   - import_role:
-      name: nginx
+      name: rchouinard.nginx
