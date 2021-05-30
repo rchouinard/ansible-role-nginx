@@ -1,9 +1,51 @@
 ---
-nginx_packages:
-  - nginx
+# @var nginx_package: nginx # Name of main nginx package
+nginx_package: nginx
 
+# @var nginx_extra_packages: [] # List of additional packages to install
+nginx_extra_packages: []
+# @example #
+# nginx_extra_packages:
+#   - nginx-mod-mail
+# @end #
+
+# @var nginx_user: nginx #
 nginx_user: nginx
+
+# @var nginx_group: ~ #
 nginx_group: ~
+
+# @var nginx_worker_processes: auto #
 nginx_worker_processes: auto
+
+# @var nginx_worker_rlimit_nofile: 8192 #
 nginx_worker_rlimit_nofile: 8192
+
+# @var nginx_worker_connections: 8000 #
 nginx_worker_connections: 8000
+
+# @var nginx_log_formats: {} #
+nginx_log_formats: {}
+# @example #
+# nginx_log_formats:
+#   custom: >-
+#     $remote_addr - $remote_user [$time_local] "$request"
+#     $status $body_bytes_sent "$http_referer"
+#     "$http_user_agent" "$http_x_forwarded_for"
+# @end #
+
+# @var nginx_error_log_path: /var/log/nginx/error.log # Path to the main error log
+nginx_error_log_path: /var/log/nginx/error.log
+# @var nginx_error_log_level: warn # Error log level; one of debug, info, notice, warn, error, crit, alert, or emerg.
+nginx_error_log_level: warn
+# @var nginx_acces_log: /var/log/nginx/error.log warn #
+nginx_error_log: "{{ nginx_error_log_path }} {{ nginx_error_log_level }}"
+
+# @var nginx_access_log_path: /var/log/nginx/access.log # Path to the main access log
+nginx_access_log_path: /var/log/nginx/access.log
+# @var nginx_access_log_format: combined #
+nginx_access_log_format: combined
+# @var nginx_access_log_args: ~ # [[buffer=size] [gzip[=level]] [flush=time] [if=condition]]
+nginx_access_log_args: ~
+# @var nginx_acces_log: /var/log/nginx/access.log combined #
+nginx_access_log: "{{ nginx_access_log_path }} {{ nginx_access_log_format }} {{ nginx_access_log_args }}"

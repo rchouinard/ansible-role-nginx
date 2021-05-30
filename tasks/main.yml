@@ -1,14 +1,14 @@
 ---
-- name: Install packages
+- name: Install package
   package:
-    name: "{{ nginx_packages }}"
+    name: "{{ nginx_package }}"
     state: present
 
-- name: Enable service
-  service:
-    name: nginx
-    enabled: yes
-    state: started
+- name: Install extra packages
+  package:
+    name: "{{ nginx_extra_packages | list }}"
+    state: present
+  when: nginx_extra_packages | list
 
 - name: Create server config directory
   file:
@@ -18,16 +18,6 @@
     serole: object_r
     setype: httpd_config_t
     state: directory
-
-- name: Install main configuration
-  template:
-    src: nginx.conf.j2
-    dest: /etc/nginx/nginx.conf
-    mode: 0644
-    seuser: system_u
-    serole: object_r
-    setype: httpd_config_t
-  notify: restart nginx
 
 - name: Install H5BP configuration
   copy:
@@ -41,3 +31,19 @@
     - h5bp
     - mime.types
   notify: restart nginx
+
+- name: Install main configuration
+  template:
+    src: nginx.conf.j2
+    dest: /etc/nginx/nginx.conf
+    mode: 0644
+    seuser: system_u
+    serole: object_r
+    setype: httpd_config_t
+  notify: restart nginx
+
+- name: Enable service
+  service:
+    name: nginx
+    enabled: yes
+    state: started
