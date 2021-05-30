@@ -38,7 +38,7 @@ nginx_log_formats: {}
 nginx_error_log_path: /var/log/nginx/error.log
 # @var nginx_error_log_level: warn # Error log level; one of debug, info, notice, warn, error, crit, alert, or emerg.
 nginx_error_log_level: warn
-# @var nginx_acces_log: /var/log/nginx/error.log warn #
+# @var nginx_error_log: /var/log/nginx/error.log warn #
 nginx_error_log: "{{ nginx_error_log_path }} {{ nginx_error_log_level }}"
 
 # @var nginx_access_log_path: /var/log/nginx/access.log # Path to the main access log
@@ -47,5 +47,5 @@ nginx_access_log_path: /var/log/nginx/access.log
 nginx_access_log_format: combined
 # @var nginx_access_log_args: ~ # [[buffer=size] [gzip[=level]] [flush=time] [if=condition]]
 nginx_access_log_args: ~
-# @var nginx_acces_log: /var/log/nginx/access.log combined #
+# @var nginx_access_log: /var/log/nginx/access.log combined #
 nginx_access_log: "{{ nginx_access_log_path }} {{ nginx_access_log_format }} {{ nginx_access_log_args }}"
